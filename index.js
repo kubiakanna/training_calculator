@@ -7,4 +7,4 @@ console.log('Please enter the second number: ');
 const secondNumber = readline.prompt();
 
 const result = +firstNumber * +secondNumber;
-result ? console.log(result) : console.log('Invalid input.');
+!isNaN(result) ? console.log(result) : console.log('Invalid input.');
