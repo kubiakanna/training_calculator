@@ -4,7 +4,7 @@ console.log('Welcome to the calculator!');
 console.log('==========================');
 
 console.log('Please enter one of the following operators: +, -, * or /: ');
-const operatorInput = readline.prompt();
+let operatorInput = readline.prompt();
 
 console.log('Please enter the first number: ');
 const firstNumber = readline.prompt();
@@ -14,14 +14,24 @@ const secondNumber = readline.prompt();
 
 let result;
 
-if (operatorInput === '+') {
- result = +firstNumber + +secondNumber;
-} else if (operatorInput === '-') {
-    result = +firstNumber - +secondNumber;
-} else if (operatorInput === '*') {
-    result = +firstNumber * +secondNumber;
-} else if (operatorInput === '/') {
-    result = +firstNumber / +secondNumber;
-}
+switch (operatorInput) {
+    case '+':
+        result = +firstNumber + +secondNumber;
+        break;
+     
+    case '-':
+        result = +firstNumber - +secondNumber;
+        break;
+     
+    case '*':
+        result = +firstNumber * +secondNumber;
+        break;
+     
+    case '/':
+        result = +firstNumber / +secondNumber;
+        break;
 
+    default:
+        break;
+}
 !isNaN(result) ? console.log('The result is: ' + result) : console.log('Invalid input.');
