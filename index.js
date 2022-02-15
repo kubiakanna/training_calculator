@@ -6,29 +6,41 @@ console.log('==========================');
 console.log('Please enter one of the following operators: +, -, * or /: ');
 let operatorInput = readline.prompt();
 
-console.log('Please enter the first number: ');
-const firstNumber = readline.prompt();
+console.log('How many numbers do you want to operate on? ');
+let howMany = readline.prompt();
 
-console.log('Please enter the second number: ');
-const secondNumber = readline.prompt();
+let arrNumbers = [];
+
+for (let i = 0; i < howMany; i++) {
+    console.log(`Please enter number ${i+1}: `);
+    arrNumbers[i] = +readline.prompt();
+}
 
 let result;
 
 switch (operatorInput) {
     case '+':
-        result = +firstNumber + +secondNumber;
+        result = arrNumbers.reduce((acc, curr) => {
+            return acc + curr;
+        });
         break;
      
     case '-':
-        result = +firstNumber - +secondNumber;
+        result = arrNumbers.reduce((acc, curr) => {
+            return acc - curr;
+        });
         break;
      
     case '*':
-        result = +firstNumber * +secondNumber;
+        result = arrNumbers.reduce((acc, curr) => {
+            return acc * curr;
+        });
         break;
      
     case '/':
-        result = +firstNumber / +secondNumber;
+        result = arrNumbers.reduce((acc, curr) => {
+            return acc / curr;
+        });
         break;
 
     default:
