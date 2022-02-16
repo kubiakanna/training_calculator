@@ -23,8 +23,8 @@ const getInfo = (message) => {
 
 const getCalculationMode = () => {
     let calcMode = getInfo(`Which calculator mode do you want?
-1) Arithmetic
-2) Vowel counting`)
+${ARITHMETIC_MODE}) Arithmetic
+${VOWEL_COUNTING_MODE}) Vowel counting`)
     while (calcMode !== '1' && calcMode !== '2') {
         calcMode = getInfo('Please enter 1 or 2 for chosen calculator mode: ');
     }
@@ -112,13 +112,11 @@ const calculateVowels = (string) => {
 const performOneVowelCountingCalculation = () => {
     const strToCount = getInfo('Please enter a string: ').toUpperCase();
     const answer = calculateVowels(strToCount);
-    console.log(`The vowel counts are:
-A: ${answer.A}
-E: ${answer.E}
-I: ${answer.I}
-O: ${answer.O}
-U: ${answer.U}
-`)
+
+    console.log('The vowel counts are:');
+    for (let vowel in answer) {
+        console.log(`   ${vowel}: ${answer[vowel]}`);
+    }
 }
 
 const ARITHMETIC_MODE = '1';
