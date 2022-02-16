@@ -1,10 +1,17 @@
 const readline = require('readline-sync');
 
 const possibleOperators = ['+', '-', '*', '/'];
+const vowels = {
+    A: 0,
+    E: 0,
+    I: 0,
+    O: 0,
+    U: 0
+};
 
 const printWelcomeMessage = () => {
-    console.log('Welcome to the calculator!');
-    console.log('==========================');
+    console.log(`Welcome to the calculator!
+==========================`);
 }
 
 
@@ -12,6 +19,16 @@ const getInfo = (message) => {
     console.log(message);
     const userInput = readline.prompt();
     return userInput;
+}
+
+const getCalculationMode = () => {
+    let calcMode = getInfo(`Which calculator mode do you want?
+1) Arithmetic
+2) Vowel counting`)
+    while (calcMode !== '1' && calcMode !== '2') {
+        calcMode = getInfo('Please enter 1 or 2 for chosen calculator mode: ');
+    }
+    return calcMode;
 }
 
 const getOperator = () => {
@@ -41,7 +58,7 @@ const getArrOfNumbers = (size) => {
     return arrNumbers;
 }
 
-const performCalculations = (operator, numbers) => {
+const calculateResult = (operator, numbers) => {
     let result;
     switch (operator) {
         case '+':
@@ -74,20 +91,51 @@ const performCalculations = (operator, numbers) => {
     return result;
 }
 
-const performOneCalculation = () => {
+const performOneArithmeticCalculation = () => {
     const operator = getOperator();
     const howMany = howManyNumbers();
     const arrNumbers = getArrOfNumbers(howMany);
-    const answer = performCalculations(operator, arrNumbers);
+    const answer = calculateResult(operator, arrNumbers);
 
-    console.log('The result is: ' + answer);
+    console.log(`The result is: ${answer}`);
 }
+
+const calculateVowels = (string) => {
+    for (let i = 0; i < string.length; i++) {
+        if (vowels.hasOwnProperty(string[i])) {
+            vowels[string[i]] += 1;
+        }
+    }
+    return vowels;
+}
+
+const performOneVowelCountingCalculation = () => {
+    const strToCount = getInfo('Please enter a string: ').toUpperCase();
+    const answer = calculateVowels(strToCount);
+    console.log(`The vowel counts are:
+A: ${answer.A}
+E: ${answer.E}
+I: ${answer.I}
+O: ${answer.O}
+U: ${answer.U}
+`)
+}
+
+const ARITHMETIC_MODE = '1';
+const VOWEL_COUNTING_MODE = '2';
 
 printWelcomeMessage();
 
 let runAgain = 'Y';
 while (runAgain.toUpperCase() === 'Y') {
-    performOneCalculation();
 
-    runAgain = getInfo('If you want to calculate again type Y, to exit type anything else. ');
+    const calculationMode = getCalculationMode();
+    if (calculationMode === ARITHMETIC_MODE) {
+        performOneArithmeticCalculation();
+    } else if (calculationMode === VOWEL_COUNTING_MODE) {
+        performOneVowelCountingCalculation();
+    }
+
+    runAgain = getInfo(`If you want to calculate again type Y
+If you want to exit type anything else. `);
 }
