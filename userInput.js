@@ -1,6 +1,6 @@
 import readline from 'readline-sync';
 
-const possibleOperators = ['+', '-', '*', '/'];
+const possibleOperators = ['+', '-', '*', '/', '^'];
 
 export const getInfo = (message) => {
     console.log(message);
@@ -9,9 +9,9 @@ export const getInfo = (message) => {
 }
 
 export const getOperator = () => {
-    let operatorInput = getInfo('Please enter one of the following operators: +, -, * or /: ');
+    let operatorInput = getInfo('Please enter one of the following operators: +, -, *, / or ^: ');
     while (!possibleOperators.includes(operatorInput)) {
-        operatorInput = getInfo('Incorrect input. Please enter one of the following operators: +, -, * or /: ');
+        operatorInput = getInfo('Incorrect input. Please enter one of the following operators: +, -, *, / or ^: ');
     }
     return operatorInput;
 }

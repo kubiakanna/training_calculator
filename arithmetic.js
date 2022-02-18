@@ -30,6 +30,12 @@ const calculateResult = (operator, numbers) => {
                 }, numbers[0]);
             break;
 
+        case '^':
+            result = numbers.reduce((acc, curr) => {
+                return acc ** curr;
+            });
+            break;
+
         default:
             break;
     }
