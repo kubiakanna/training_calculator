@@ -37,12 +37,16 @@ const calculateResult = (operator, numbers) => {
 }
 
 const performOneArithmeticCalculation = () => {
-    const operator = getOperator();
+    try {
+        var operator = getOperator();
+    } catch (e) {
+        console.error(e.message);
+    }
     const howMany = howManyNumbers();
     const arrNumbers = getArrOfNumbers(howMany);
     const answer = calculateResult(operator, arrNumbers);
-
     console.log(`The result is: ${answer}`);
+
 }
 
 export default performOneArithmeticCalculation;

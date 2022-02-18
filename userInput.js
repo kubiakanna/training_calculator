@@ -10,10 +10,12 @@ export const getInfo = (message) => {
 
 export const getOperator = () => {
     let operatorInput = getInfo('Please enter one of the following operators: +, -, * or /: ');
-    while (!possibleOperators.includes(operatorInput)) {
-        operatorInput = getInfo('Incorrect input. Please enter one of the following operators: +, -, * or /: ');
+    if (possibleOperators.includes(operatorInput)) {
+        return operatorInput;
+    } else {
+        throw new Error('That is not a valid operator. Supported operators are: +, -, * and /.');
     }
-    return operatorInput;
+    
 }
 
 export const howManyNumbers = () => {
