@@ -22,9 +22,11 @@ const calculateResult = (operator, numbers) => {
             break;
 
         case '/':
-            result = numbers.reduce((acc, curr) => {
-                return acc / curr;
-            });
+            result = numbers
+                .filter(num => num !== 0 || num === numbers[0])
+                .reduce((acc, curr) => {
+                    return acc / curr;
+                });
             break;
 
         default:
